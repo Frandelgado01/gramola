@@ -20,20 +20,16 @@ public class SpotiService {
     @Autowired
     private UserDao userDao;
 
-    // Este es el método que tu Controller no encontraba
     public SpotiToken getAuthorizationToken(String code, String clientId) {
         
-        // 1. Buscamos el usuario
-        User user = userDao.findBySpotifyClientId(clientId);
+        User user = userDao.findFirstBySpotifyClientId(clientId);
         
         if (user == null) {
             throw new RuntimeException("No existe usuario con Client ID: " + clientId);
         }
 
-        // 2. Obtenemos el secreto
         String clientSecret = user.getSpotifyClientSecret();
 
-        // 3. Preparamos la llamada a Spotify
         RestTemplate restTemplate = new RestTemplate();
         
         HttpHeaders headers = new HttpHeaders();
@@ -43,11 +39,16 @@ public class SpotiService {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("code", code);
         body.add("grant_type", "authorization_code");
+        
+        // IMPORTANTE: Esta URL debe ser idéntica a la del Frontend
         body.add("redirect_uri", "http://127.0.0.1:4200/home"); 
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(body, headers);
 
-        // 4. Hacemos el POST (URL oficial de Spotify)
+        // ❌ MAL (Lo que tenías):
+        // String spotifyUrl = "https://accounts.spotify.com/api/token";
+        
+        // ✅ BIEN (La oficial de Spotify):
         String spotifyUrl = "https://accounts.spotify.com/api/token";
             
         try {
@@ -58,8 +59,9 @@ public class SpotiService {
             );
             return response.getBody();
         } catch (Exception e) {
-            System.err.println("Error Spotify: " + e.getMessage());
-            return null; // O lanzar la excepción
+            System.err.println("Error Spotify Backend: " + e.getMessage());
+            e.printStackTrace(); // Imprime el error completo para verlo en la consola
+            return null;
         }
     }
 }

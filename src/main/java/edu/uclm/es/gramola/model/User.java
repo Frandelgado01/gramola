@@ -33,8 +33,8 @@ public class User {
     private boolean enabled; 
 
     // Para saber si ha pagado
-    @Column(name = "subscription_active")
-    private boolean subscriptionActive;
+   @Column(name = "subscription_active", nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
+    private boolean subscriptionActive = false;
 
     // Constructores, Getters y Setters
     public User() {

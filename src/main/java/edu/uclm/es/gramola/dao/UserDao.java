@@ -8,13 +8,14 @@ import edu.uclm.es.gramola.model.User;
 @Repository
 public interface UserDao extends JpaRepository<User, String> {
     
-    // Para el Login (tu código antiguo seguramente usa esto)
+    // 1. Para confirmar cuenta (El token es único, usamos findBy normal)
+    User findByCreationTokenId(String creationTokenId);
+
+    // 2. Para Login (El email es único, usamos findBy normal)
     User findByEmailAndPwd(String email, String pwd);
 
-    // Para Spotify (Nuevo) -> Devuelve User directamente
-    User findBySpotifyClientId(String spotifyClientId);
+    // 3. Para conectar Spotify (HAY DUPLICADOS, usamos findFirst para evitar el error)
+    User findFirstBySpotifyClientId(String spotifyClientId);
 
-    // Para confirmar Email (Recuperado) -> Devuelve User directamente
-    // Al quitar 'Optional', tu UserService dejará de quejarse en la línea 58
-    User findByCreationTokenId(String creationTokenId);
+    User findByEmail(String email);
 }
