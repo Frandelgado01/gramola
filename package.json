@@ -4,6 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "dev:frontend": "ng serve",
+    "dev:backend": "cd ..\\gramola\\gramola && mvnw.cmd spring-boot:run",
+    "dev:e2e:backend": "set E2E_ENABLED=true&& cd ..\\gramola\\gramola && mvnw.cmd spring-boot:run",
+    "dev": "concurrently -n BACKEND,FRONTEND -c blue,green \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:e2e": "concurrently -n BACKEND,FRONTEND -c blue,green \"npm run dev:e2e:backend\" \"npm run dev:frontend\"",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -29,13 +34,16 @@
     "@angular/forms": "^21.0.0",
     "@angular/platform-browser": "^21.0.0",
     "@angular/router": "^21.0.0",
+    "@stripe/stripe-js": "^8.6.1",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "zone.js": "^0.16.0"
   },
   "devDependencies": {
     "@angular/build": "^21.0.4",
     "@angular/cli": "^21.0.4",
     "@angular/compiler-cli": "^21.0.0",
+    "concurrently": "^9.2.1",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"

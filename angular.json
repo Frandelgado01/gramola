@@ -2,7 +2,8 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "44b2aaa2-222e-4469-882c-c27e7603c619"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -54,6 +55,11 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.json",
+            "host": "127.0.0.1",
+            "port": 4200
+          },
           "configurations": {
             "production": {
               "buildTarget": "gramolafe:build:production"

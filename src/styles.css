@@ -1,1 +1,275 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global theme */
+
+:root {
+	--bg0: #0b0f1a;
+	--bg1: #0e1730;
+	--surface: rgba(255, 255, 255, 0.08);
+	--surface-strong: rgba(255, 255, 255, 0.12);
+	--border: rgba(255, 255, 255, 0.14);
+	--text: rgba(255, 255, 255, 0.92);
+	--muted: rgba(255, 255, 255, 0.7);
+
+	--shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+	--shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+	--primary: #1db954;
+	--primary-2: #18a84b;
+	--danger: #ff5d5d;
+
+	--radius: 14px;
+	--radius-sm: 10px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	color: var(--text);
+	background:
+		radial-gradient(1200px 800px at 20% 0%, rgba(29, 185, 84, 0.35), transparent 60%),
+		radial-gradient(900px 600px at 90% 10%, rgba(88, 101, 242, 0.25), transparent 60%),
+		linear-gradient(180deg, var(--bg0), var(--bg1));
+	font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+		"Apple Color Emoji", "Segoe UI Emoji";
+	line-height: 1.35;
+}
+
+a {
+	color: rgba(255, 255, 255, 0.9);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* App layout */
+.app-shell {
+	min-height: 100vh;
+	padding: 28px 18px;
+	display: grid;
+	place-items: start center;
+}
+
+.app-main {
+	width: 100%;
+	max-width: 920px;
+}
+
+/* Shared UI */
+.card {
+	background: linear-gradient(180deg, var(--surface-strong), var(--surface));
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-soft);
+	backdrop-filter: blur(10px);
+}
+
+input,
+button,
+select {
+	font: inherit;
+}
+
+input[type='email'],
+input[type='password'],
+input[type='text'] {
+	width: 100%;
+	padding: 10px 12px;
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	background: rgba(0, 0, 0, 0.25);
+	color: var(--text);
+	outline: none;
+	transition: border-color 160ms ease, background 160ms ease;
+}
+
+input[type='email']:focus,
+input[type='password']:focus,
+input[type='text']:focus {
+	border-color: rgba(29, 185, 84, 0.55);
+	background: rgba(0, 0, 0, 0.32);
+}
+
+button {
+	border: 0;
+	border-radius: 12px;
+	padding: 10px 14px;
+	font-weight: 700;
+	cursor: pointer;
+	background: linear-gradient(180deg, var(--primary), var(--primary-2));
+	color: #08110b;
+	box-shadow: 0 10px 24px rgba(29, 185, 84, 0.25);
+	transition: transform 120ms ease, filter 120ms ease;
+}
+
+button:hover {
+	filter: brightness(1.03);
+	transform: translateY(-1px);
+}
+
+button:active {
+	transform: translateY(0px);
+}
+
+button:disabled {
+	opacity: 0.7;
+	cursor: not-allowed;
+	transform: none;
+}
+
+button.btn-outline,
+button.btn-ghost,
+button.btn-secondary,
+button.btn-danger {
+	box-shadow: none;
+}
+
+button.btn-outline {
+	background: transparent;
+	color: rgba(255, 255, 255, 0.9);
+	border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+button.btn-outline:hover {
+	filter: brightness(1.06);
+}
+
+button.btn-ghost {
+	background: rgba(255, 255, 255, 0.06);
+	color: rgba(255, 255, 255, 0.9);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+button.btn-secondary {
+	background: linear-gradient(180deg, rgba(88, 101, 242, 0.95), rgba(72, 84, 214, 0.95));
+	color: rgba(255, 255, 255, 0.95);
+}
+
+button.btn-danger {
+	background: linear-gradient(180deg, rgba(255, 93, 93, 0.98), rgba(224, 68, 68, 0.98));
+	color: rgba(255, 255, 255, 0.98);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+	outline: 2px solid rgba(29, 185, 84, 0.7);
+	outline-offset: 2px;
+	border-radius: 10px;
+}
+
+input::placeholder {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+/* Typography helpers */
+h1,
+h2,
+h3 {
+	color: rgba(255, 255, 255, 0.94);
+	letter-spacing: 0.2px;
+}
+
+.muted {
+	color: var(--muted);
+}
+
+.section-title {
+	margin: 8px 0 10px;
+	font-size: 1.15rem;
+	font-weight: 900;
+	color: rgba(29, 185, 84, 0.95);
+}
+
+/* Layout helpers */
+.card--padded {
+	padding: 26px;
+}
+
+.auth-card {
+	max-width: 460px;
+	margin: 40px auto;
+}
+
+.stack {
+	display: grid;
+	gap: 12px;
+}
+
+.field {
+	display: grid;
+	gap: 8px;
+}
+
+.field label {
+	font-weight: 800;
+	font-size: 0.95rem;
+	color: rgba(255, 255, 255, 0.86);
+}
+
+.help {
+	margin: -2px 0 0;
+	font-size: 0.92rem;
+	color: rgba(255, 255, 255, 0.68);
+}
+
+.divider {
+	border: none;
+	border-top: 1px solid rgba(255, 255, 255, 0.14);
+	margin: 12px 0;
+}
+
+.link-row {
+	margin-top: 14px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	font-size: 0.95rem;
+}
+
+/* Alerts */
+.alert {
+	padding: 10px 12px;
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	background: rgba(0, 0, 0, 0.18);
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.alert--info {
+	border-color: rgba(88, 101, 242, 0.35);
+	background: rgba(88, 101, 242, 0.12);
+}
+
+.alert--success {
+	border-color: rgba(29, 185, 84, 0.35);
+	background: rgba(29, 185, 84, 0.12);
+}
+
+.alert--danger {
+	border-color: rgba(255, 93, 93, 0.35);
+	background: rgba(255, 93, 93, 0.12);
+}
+
+/* Template-driven forms: show invalid state once touched */
+input.ng-invalid.ng-touched {
+	border-color: rgba(255, 93, 93, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation: none !important;
+		transition: none !important;
+		scroll-behavior: auto !important;
+	}
+}

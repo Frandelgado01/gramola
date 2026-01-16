@@ -1,0 +1,7 @@
+.confirm-wrap { display: grid; place-items: start center; padding: 42px 18px; }
+.card { width: 100%; max-width: 520px; padding: 26px; text-align: center; }
+.muted { color: rgba(255,255,255,0.72); }
+.error { color: #ff7b7b; font-weight: 700; }
+.success { color: rgba(29,185,84,0.95); font-weight: 800; }
+.btn { display: inline-block; margin-top: 14px; padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.16); color: rgba(255,255,255,0.9); text-decoration: none; }
+.btn:hover { filter: brightness(1.05); }

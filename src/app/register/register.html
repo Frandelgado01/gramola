@@ -1,0 +1,185 @@
+<div class="register-page">
+  <aside class="card promo" aria-hidden="true">
+    <div class="promo-inner">
+      <div class="promo-badge">Crea tu cuenta</div>
+      <div class="promo-title">Empieza en 1 minuto</div>
+      <div class="promo-subtitle">Registra tu local, activa Spotify y gestiona la cola con estilo.</div>
+
+      <div class="promo-points">
+        <div class="promo-point"><span class="dot"></span><span>Registro y confirmación por email.</span></div>
+        <div class="promo-point"><span class="dot"></span><span>Configura Spotify (opcional) cuando quieras.</span></div>
+        <div class="promo-point"><span class="dot"></span><span>Interfaz pensada para uso rápido en barra.</span></div>
+      </div>
+
+      <div class="promo-art">
+        <div class="blob blob-a"></div>
+        <div class="blob blob-b"></div>
+      </div>
+    </div>
+  </aside>
+
+  <section class="card card--padded auth-card">
+    <header class="auth-header">
+      <div class="brand-row">
+        <div class="brand-icon">★</div>
+        <div>
+          <div class="brand-title">Crear cuenta</div>
+          <p class="muted">Registra tu establecimiento y empieza a usar la gramola.</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="alerts" aria-live="polite">
+      <div *ngIf="successMsg" class="alert alert--success">{{ successMsg }}</div>
+      <div *ngIf="errorMsg" class="alert alert--danger">{{ errorMsg }}</div>
+    </div>
+
+    <form class="stack" (ngSubmit)="register()">
+      <div class="field">
+        <label for="barName">Nombre del establecimiento</label>
+        <div class="input-wrap">
+          <span class="input-icon" aria-hidden="true">🏷️</span>
+          <input
+            id="barName"
+            type="text"
+            [(ngModel)]="barName"
+            name="barName"
+            required
+            placeholder="Ej: Bar Manolo"
+            autocomplete="organization"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <div class="input-wrap">
+          <span class="input-icon" aria-hidden="true">✉️</span>
+          <input
+            id="email"
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            required
+            placeholder="tu@email.com"
+            autocomplete="email"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="pwd">Contraseña</label>
+        <div class="input-wrap">
+          <span class="input-icon" aria-hidden="true">🔒</span>
+          <input
+            id="pwd"
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="pwd"
+            name="pwd"
+            required
+            placeholder="Mínimo 6 caracteres"
+            autocomplete="new-password"
+          />
+          <button
+            type="button"
+            class="toggle"
+            (click)="togglePassword()"
+            [attr.aria-pressed]="showPassword"
+            [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+          >
+            {{ showPassword ? 'Ocultar' : 'Mostrar' }}
+          </button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="pwd2">Confirmar contraseña</label>
+        <div class="input-wrap">
+          <span class="input-icon" aria-hidden="true">🔁</span>
+          <input
+            id="pwd2"
+            [type]="showPassword2 ? 'text' : 'password'"
+            [(ngModel)]="pwd2"
+            name="pwd2"
+            required
+            placeholder="Repite la contraseña"
+            autocomplete="new-password"
+          />
+          <button
+            type="button"
+            class="toggle"
+            (click)="togglePassword2()"
+            [attr.aria-pressed]="showPassword2"
+            [attr.aria-label]="showPassword2 ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+          >
+            {{ showPassword2 ? 'Ocultar' : 'Mostrar' }}
+          </button>
+        </div>
+      </div>
+
+      <div class="spotify-panel">
+        <div class="spotify-head">
+          <div>
+            <div class="spotify-title">Spotify (opcional)</div>
+            <div class="spotify-subtitle muted">Puedes configurarlo ahora o más adelante.</div>
+          </div>
+          <button type="button" class="btn-ghost" (click)="toggleSpotify()">
+            {{ showSpotifyConfig ? 'Ocultar' : 'Configurar' }}
+          </button>
+        </div>
+
+        <div *ngIf="showSpotifyConfig" class="stack" style="margin-top: 12px;">
+          <p class="help">
+            Pega tu Client ID y Client Secret de Spotify para controlar la reproducción.
+          </p>
+
+          <div class="field">
+            <label for="spotifyId">Spotify Client ID</label>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true">🆔</span>
+              <input
+                id="spotifyId"
+                type="text"
+                [(ngModel)]="spotifyId"
+                name="spotifyId"
+                placeholder="Pegar ID de Spotify"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="spotifySecret">Spotify Client Secret</label>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true">🔐</span>
+              <input
+                id="spotifySecret"
+                [type]="showSpotifySecret ? 'text' : 'password'"
+                [(ngModel)]="spotifySecret"
+                name="spotifySecret"
+                placeholder="Pegar Secret de Spotify"
+              />
+              <button
+                type="button"
+                class="toggle"
+                (click)="toggleSpotifySecret()"
+                [attr.aria-pressed]="showSpotifySecret"
+                [attr.aria-label]="showSpotifySecret ? 'Ocultar secret' : 'Mostrar secret'"
+              >
+                {{ showSpotifySecret ? 'Ocultar' : 'Mostrar' }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Creando cuenta...' : 'Registrar' }}
+      </button>
+    </form>
+
+    <div class="link-row">
+      <span class="muted">¿Ya tienes cuenta?</span>
+      <a routerLink="/login">Iniciar sesión</a>
+    </div>
+  </section>
+</div>

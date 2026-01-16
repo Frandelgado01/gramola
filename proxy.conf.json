@@ -1,0 +1,23 @@
+{
+  "/users": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/gramola": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/spoti": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/ws": {
+    "target": "ws://localhost:8080",
+    "secure": false,
+    "changeOrigin": true,
+    "ws": true
+  }
+}

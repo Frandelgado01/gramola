@@ -1,0 +1,215 @@
+/* Polished login page (keeps global theme, adds a premium layout) */
+
+.login-page {
+  width: 100%;
+  max-width: 980px;
+  margin: 22px auto;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.promo {
+  position: relative;
+  overflow: hidden;
+  padding: 22px;
+  min-height: 420px;
+}
+
+.promo-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 12px;
+}
+
+.promo-badge {
+  width: fit-content;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.14);
+  font-weight: 900;
+  font-size: 0.86rem;
+}
+
+.promo-title {
+  font-weight: 1100;
+  font-size: 2rem;
+  letter-spacing: 0.3px;
+}
+
+.promo-subtitle {
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 46ch;
+}
+
+.promo-points {
+  display: grid;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.promo-point {
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 3px;
+  background: rgba(29, 185, 84, 0.85);
+  box-shadow: 0 0 0 5px rgba(29, 185, 84, 0.14);
+}
+
+.promo-art {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.blob {
+  position: absolute;
+  filter: blur(24px);
+  opacity: 0.9;
+}
+
+.blob-a {
+  width: 320px;
+  height: 320px;
+  left: -140px;
+  top: -160px;
+  border-radius: 50%;
+  background: rgba(29, 185, 84, 0.60);
+}
+
+.blob-b {
+  width: 360px;
+  height: 360px;
+  right: -170px;
+  bottom: -190px;
+  border-radius: 50%;
+  background: rgba(88, 101, 242, 0.55);
+}
+
+.auth-card {
+  margin: 0;
+}
+
+.auth-header {
+  margin-bottom: 12px;
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: radial-gradient(circle at 30% 20%, rgba(29,185,84,0.8), rgba(29,185,84,0.06));
+  border: 1px solid rgba(29,185,84,0.35);
+  box-shadow: 0 14px 30px rgba(29,185,84,0.18);
+  font-weight: 1000;
+}
+
+.brand-title {
+  font-weight: 1050;
+  font-size: 1.45rem;
+  letter-spacing: 0.2px;
+}
+
+.alerts {
+  display: grid;
+  gap: 10px;
+  margin: 10px 0 12px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin: 14px 0 8px;
+  color: rgba(255, 255, 255, 0.86);
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.9;
+}
+
+.input-wrap input {
+  padding-left: 40px;
+}
+
+.toggle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.toggle:hover { filter: brightness(1.06); }
+
+button[type='submit'] {
+  width: 100%;
+  margin-top: 18px;
+  font-size: 1rem;
+}
+
+.enlaces {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+a {
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover { text-decoration: underline; }
+
+.olvido { color: rgba(255, 255, 255, 0.68); }
+
+@media (max-width: 900px) {
+  .login-page { grid-template-columns: 1fr; }
+  .promo { min-height: 0; }
+}
+
+@media (max-width: 420px) {
+  .brand-title { font-size: 1.35rem; }
+}

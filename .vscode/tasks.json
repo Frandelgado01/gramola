@@ -3,8 +3,10 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "npm",
-      "script": "start",
+      "label": "Frontend: start (cmd)",
+      "type": "shell",
+      "command": "cmd.exe",
+      "args": ["/d", "/c", "npm run start"],
       "isBackground": true,
       "problemMatcher": {
         "owner": "typescript",
@@ -18,11 +20,16 @@
             "regexp": "bundle generation (complete|failed)"
           }
         }
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
       }
     },
     {
-      "type": "npm",
-      "script": "test",
+      "label": "Frontend: test (cmd)",
+      "type": "shell",
+      "command": "cmd.exe",
+      "args": ["/d", "/c", "npm run test"],
       "isBackground": true,
       "problemMatcher": {
         "owner": "typescript",
@@ -36,7 +43,32 @@
             "regexp": "bundle generation (complete|failed)"
           }
         }
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
       }
+    },
+    {
+      "label": "Backend: spring-boot run (mvnw.cmd)",
+      "type": "shell",
+      "command": "cmd.exe",
+      "args": ["/d", "/c", "mvnw.cmd spring-boot:run"],
+      "isBackground": true,
+      "options": {
+        "cwd": "c:/Users/frand/OneDrive/Escritorio/gramola/gramola"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Dev: start (cmd)",
+      "type": "shell",
+      "command": "cmd.exe",
+      "args": ["/d", "/c", "npm run dev"],
+      "isBackground": true,
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
     }
   ]
 }

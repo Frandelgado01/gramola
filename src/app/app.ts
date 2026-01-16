@@ -1,12 +1,15 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+// Las líneas de import del Login y Register se borran porque ya no hacen falta aquí
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  // Limpiamos la lista de imports:
+  imports: [RouterOutlet], 
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('gramolafe');
+export class AppComponent {
+  title = 'gramolafe';
 }
